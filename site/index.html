@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Archivo:wght@400;600;800&family=Bebas+Neue&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/img/icone-musica.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- fundos em vídeo (um por tela) -->
+<div class="bgs" aria-hidden="true">
+  <video class="bg" data-screen="home"     src="assets/video/home.mp4"     poster="assets/video/home.jpg"     muted loop playsinline preload="auto"></video>
+  <video class="bg" data-screen="projetos" src="assets/video/projetos.mp4" poster="assets/video/projetos.jpg" muted loop playsinline preload="none"></video>
+  <video class="bg" data-screen="skills"   src="assets/video/skills.mp4"   poster="assets/video/skills.jpg"   muted loop playsinline preload="none"></video>
+  <video class="bg" data-screen="sobre"    src="assets/video/sobre.mp4"    poster="assets/video/sobre.jpg"    muted loop playsinline preload="none"></video>
+  <video class="bg" data-screen="contato"  src="assets/video/contato.mp4"  poster="assets/video/contato.jpg"  muted loop playsinline preload="none"></video>
+</div>
+<!-- efeitos: cada tela liga uma combinação (ver FX em main.js) -->
+<div class="fx" aria-hidden="true">
+  <div class="fx-l tint"></div>
+  <div class="fx-l dots"></div>
+  <div class="fx-l streaks"></div>
+  <div class="fx-l halftone"></div>
+  <div class="fx-l scan"></div>
+  <canvas class="fx-l" id="bubbles"></canvas>
+  <canvas class="fx-l" id="shards"></canvas>
+</div>
+
+<!-- HUD fixo -->
+<a class="tag tag-left" id="tagLeft" href="#home"></a>
+<div class="hud-top-right">
+  <a class="back" id="backTop" href="#home" hidden><span class="arrow">◀</span> VOLTAR <kbd>ESC</kbd></a>
+  <div class="tag tag-right" id="tagRight"></div>
+</div>
+<nav class="keys" id="keys" aria-label="Navegação"></nav>
+<div class="hud-right">
+  <span class="clock" id="clock"></span>
+  <div class="sound-box" role="group" aria-label="Volume">
+    <button type="button" class="mute" id="mute" aria-label="Silenciar" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><g class="waves" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></g><g class="cross" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M16 9l5 6M21 9l-5 6"/></g></svg>
+    </button>
+    <button type="button" class="step" id="volDown" aria-label="Diminuir volume">−</button>
+    <input type="range" id="vol" min="0" max="100" step="5" value="60" aria-label="Volume">
+    <button type="button" class="step" id="volUp" aria-label="Aumentar volume">+</button>
+    <output id="volOut">60</output>
+  </div>
+  <button class="music-btn" id="musicBtn" aria-label="Abrir trilha sonora" aria-expanded="false" aria-controls="player">
+    <img src="assets/img/icone-musica.png" alt="">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+</div>
+
+<!-- player da trilha sonora -->
+<aside class="player" id="player" hidden aria-label="Trilha sonora">
+  <header class="player-head">
+    <h2>TRILHA SONORA</h2>
+    <button class="x" id="playerClose" aria-label="Fechar">✕</button>
+  </header>
+  <div class="now">
+    <span class="eq big" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <div><p class="np-title" id="npTitle"></p><p class="np-artist" id="npArtist"></p></div>
+  </div>
+  <div class="seek">
+    <span id="tCur">0:00</span>
+    <input type="range" id="seek" min="0" max="1000" value="0" aria-label="Posição da música">
+    <span id="tDur">0:00</span>
+  </div>
+  <div class="ctrl">
+    <button id="prev" aria-label="Anterior">⏮</button>
+    <button id="play" class="play" aria-label="Tocar">▶</button>
+    <button id="next" aria-label="Próxima">⏭</button>  </div>
+  <ol class="tracks" id="tracks"></ol>
+  <p class="player-hint"><kbd>P</kbd> tocar / pausar · <kbd>M</kbd> mudo · <kbd>-</kbd><kbd>+</kbd> volume</p>
+</aside>
+<audio id="audio" preload="none"></audio>
+
+<main>
+  <!-- HOME -->
+  <section class="screen" id="home" data-screen="home">
+    <p class="kicker" id="tagline"></p>
+    <h1 class="ransom big" id="nome"></h1>
+    <div class="bio-box"><p id="bio"></p></div>
+    <nav class="menu" id="menu">
+      <a href="#projetos" data-word="PROJETOS"></a>
+      <a href="#skills"   data-word="SKILLS"></a>
+      <a href="#sobre"    data-word="SOBRE"></a>
+      <a href="#contato"  data-word="CONTATO"></a>
+    </nav>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="screen" id="projetos" data-screen="projetos" hidden>
+    <header class="screen-head">
+      <h2 class="ransom title" data-word="PROJETOS"></h2>
+    </header>
+    <h3 class="sub"><i></i>DESTAQUES</h3>
+    <div class="cards" id="destaques"></div>
+    <h3 class="sub"><i></i>TODOS OS REPOSITÓRIOS</h3>
+    <p class="meta" id="repoMeta"></p>
+    <div class="cards" id="repos"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="screen" id="skills" data-screen="skills" hidden>
+    <header class="screen-head">
+      <h2 class="ransom title" data-word="SKILLS"></h2>
+    </header>
+    <div class="skill-groups" id="skillGroups"></div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="screen" id="sobre" data-screen="sobre" hidden>
+    <header class="screen-head">
+      <h2 class="ransom title" data-word="SOBRE MIM"></h2>
+    </header>
+    <article class="paper">
+      <figure class="photo" id="foto"></figure>
+      <div class="paper-text" id="sobreTexto"></div>
+      <blockquote class="quote" id="citacao"></blockquote>
+    </article>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="screen" id="contato" data-screen="contato" hidden>
+    <header class="screen-head">
+      <h2 class="ransom title" data-word="CONTATO"></h2>
+    </header>
+    <div class="contact-col">
+      <p class="note" id="contatoTexto"></p>
+      <div class="link-row" id="links"></div>
+      <form class="form" id="form">
+        <h3>MANDE UMA MENSAGEM</h3>
+        <label>NOME<input name="nome" required autocomplete="name"></label>
+        <label>SEU E-MAIL<input name="email" type="email" required autocomplete="email"></label>
+        <label>MENSAGEM<textarea name="mensagem" rows="4" required></textarea></label>
+        <button type="submit">ENVIAR ▶</button>
+        <span class="form-status" id="formStatus" role="status"></span>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
