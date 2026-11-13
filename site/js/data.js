@@ -33,7 +33,8 @@ window.PORTFOLIO = {
   foto: "",                    // TODO — ex.: "assets/img/foto.jpg" (vazio = moldura com iniciais)
   sobre: [
     "Eu sou Miguel Mariano, estudante do [[7º período de Engenharia de Software]] na UniEvangélica. Minha especialidade hoje é [[gerenciar projetos com MCP]] e programar com [[agentes de IA]] no Claude Code, principalmente em sites.",
-    "O [[React.js]] é a biblioteca com que tenho mais experiência por enquanto, e sempre busco aprimorar e aprofundar o que sei nela."
+    "O [[React.js]] é a biblioteca com que tenho mais experiência por enquanto, e sempre busco aprimorar e aprofundar o que sei nela.",
+    "Agora quero evoluir no [[backend]], principalmente em [[banco de dados]]."
   ],
   citacao: { texto: "", autor: "" }, // TODO — vazio = a citação não aparece
 

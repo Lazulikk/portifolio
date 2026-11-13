@@ -22,7 +22,6 @@
   }
 
   // ---------- preencher conteúdo ----------
-  document.title = `${D.nomeCurto} — Portfólio`;
   $("#tagLeft").textContent = `PORTFÓLIO // ${D.nomeCurto}`;
   $("#tagRight").textContent = D.local;
   $("#tagline").textContent = D.tagline;
