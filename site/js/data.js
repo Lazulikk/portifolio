@@ -56,5 +56,5 @@ window.PORTFOLIO = {
 
   // Endpoint do Formspree (formspree.io) para o formulário enviar de verdade.
   // Vazio = o botão abre o app de e-mail com a mensagem preenchida.
-  formspree: ""
+  formspree: "https://formspree.io/f/xwlovqdp"
 };
