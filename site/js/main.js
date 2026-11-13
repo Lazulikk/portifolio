@@ -32,11 +32,14 @@
 
   const card = (p, light) => {
     const [first, ...rest] = String(p.titulo).split(" ");
-    return `<a class="card${light ? " light" : ""}" href="${esc(p.url)}" target="_blank" rel="noopener">
+    // sem url = card sem link (ex.: repositório privado)
+    const tagName = p.url ? "a" : "div";
+    const attrs = p.url ? ` href="${esc(p.url)}" target="_blank" rel="noopener"` : "";
+    return `<${tagName} class="card${light ? " light" : ""}"${attrs}>
       ${p.tag ? `<span class="badge">${esc(p.tag)}</span>` : ""}
       <h4><b>${esc(first)}</b> ${esc(rest.join(" "))}</h4>
       <p>${esc(p.desc || "Sem descrição ainda — o código fala por si.")}</p>
-      <div class="foot"><span>${esc(p.status ?? "")}</span><span class="go">VER NO GITHUB →</span></div></a>`;
+      <div class="foot"><span>${esc(p.status ?? "")}</span>${p.url ? `<span class="go">${esc(p.acao || "VER NO GITHUB")} →</span>` : ""}</div></${tagName}>`;
   };
   $("#destaques").innerHTML = D.destaques.map(p => card(p, false)).join("");
 
@@ -59,7 +62,8 @@
   const ini = D.nomeCurto.split(/\s+/).map(w => w[0]).join("").slice(0, 2);
   $("#foto").innerHTML = D.foto ? `<img src="${esc(D.foto)}" alt="Foto de ${esc(D.nomeCurto)}">` : esc(ini);
   $("#sobreTexto").innerHTML = D.sobre.map(p => `<p>${marks(p)}</p>`).join("");
-  $("#citacao").innerHTML = `<q>${esc(D.citacao.texto)}</q><cite>— ${esc(D.citacao.autor)}</cite>`;
+  if (D.citacao?.texto) $("#citacao").innerHTML = `<q>${esc(D.citacao.texto)}</q><cite>— ${esc(D.citacao.autor)}</cite>`;
+  else $("#citacao").remove();
 
   $("#contatoTexto").innerHTML = marks(D.contatoTexto);
   $("#links").innerHTML = [{ rotulo: "E-MAIL", url: `mailto:${D.email}`, icone: "✉" }, ...D.links]

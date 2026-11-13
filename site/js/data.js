@@ -7,44 +7,41 @@ window.PORTFOLIO = {
   nomeCurto: "MIGUEL MARIANO", // selo do canto superior esquerdo
   tagline: "DÊ UMA OLHADA NO MEU TRABALHO",
   local: "ANÁPOLIS - GO · ENGENHARIA DE SOFTWARE", // selo do canto superior direito
-  bio: "TODO — 2 a 4 frases sobre você: o que estuda, o que gosta de construir e o que procura agora.",
+  bio: "Estudante do 7º período de Engenharia de Software na UniEvangélica. Hoje meu foco é construir sites e gerenciar projetos com MCP e agentes de IA.",
 
   // Projetos. Se "githubUser" estiver preenchido, a seção "Todos os repositórios"
-  // é carregada ao vivo da API pública do GitHub.
-  githubUser: "",              // TODO — ex.: "seuusuario"
+  // é carregada ao vivo da API pública do GitHub (todos os repos públicos).
+  githubUser: "",
+  // url vazia = card sem link (ex.: repositório privado)
   destaques: [
-    { titulo: "PROJETO PRINCIPAL", desc: "TODO — uma linha sobre o projeto.", tag: "LIVE APP", status: "NO AR", url: "#" },
-    { titulo: "SEGUNDO PROJETO",   desc: "TODO — uma linha sobre o projeto.", tag: "PYTHON",   status: "DESTAQUE", url: "#" },
-    { titulo: "TERCEIRO PROJETO",  desc: "TODO — uma linha sobre o projeto.", tag: "WEB",      status: "DESTAQUE", url: "#" }
+    { titulo: "MONIPRO", desc: "Sistema web em desenvolvimento, com front em React e projeto gerenciado com agentes de IA via MCP.", tag: "REACT", status: "EM DESENVOLVIMENTO", url: "" },
+    { titulo: "PORTFÓLIO", desc: "Este site: HTML, CSS e JavaScript puros, com visual de interface de jogo, vídeos de fundo e trilha sonora.", tag: "WEB", status: "NO AR", url: "https://github.com/Lazulikk/portifolio" }
   ],
   // usado quando githubUser está vazio (ou a API falha)
   repositorios: [
-    { titulo: "repo-exemplo-1", desc: "TODO", lang: "JavaScript", estrelas: 0, url: "#" },
-    { titulo: "repo-exemplo-2", desc: "TODO", lang: "Python",     estrelas: 0, url: "#" },
-    { titulo: "repo-exemplo-3", desc: "TODO", lang: "HTML",       estrelas: 0, url: "#" }
+    { titulo: "MoniPro", desc: "Repositório privado.", lang: "React", estrelas: 0, url: "" },
+    { titulo: "portifolio", desc: "Código deste site.", lang: "HTML/CSS/JS", estrelas: 0, url: "https://github.com/Lazulikk/portifolio" }
   ],
 
   // Skills: nível de 0 a 100
   skills: [
-    { grupo: "LINGUAGENS", itens: [["JavaScript", 80], ["Python", 70], ["Java", 55], ["SQL", 60]] },
-    { grupo: "FERRAMENTAS", itens: [["Git & GitHub", 85], ["React", 65], ["Node.js", 60], ["Figma", 50]] },
-    { grupo: "IDIOMAS",     itens: [["Português", 100], ["Inglês", 70], ["Espanhol", 35]] }
+    { grupo: "DESENVOLVIMENTO", itens: [["React.js", 60]] },
+    { grupo: "IA & AUTOMAÇÃO",  itens: [["MCP", 70], ["Gestão de projetos com IA", 70]] }
   ],
 
   // Sobre mim. Trechos entre [[colchetes duplos]] ganham o destaque preto.
   foto: "",                    // TODO — ex.: "assets/img/foto.jpg" (vazio = moldura com iniciais)
   sobre: [
-    "TODO — Eu sou [[estudante de ...]] com interesse em [[desenvolvimento web]] e [[...]].",
-    "TODO — Um parágrafo sobre como começou a programar e o que te motiva.",
-    "TODO — Um parágrafo sobre projetos, experiências ou o que está aprendendo agora."
+    "Eu sou Miguel Mariano, estudante do [[7º período de Engenharia de Software]] na UniEvangélica. Minha especialidade hoje é [[gerenciar projetos com MCP]] e programar com [[agentes de IA]] no Claude Code, principalmente em sites.",
+    "O [[React.js]] é a biblioteca com que tenho mais experiência por enquanto, e sempre busco aprimorar e aprofundar o que sei nela."
   ],
-  citacao: { texto: "TODO — uma frase que te representa.", autor: "Autor" },
+  citacao: { texto: "", autor: "" }, // TODO — vazio = a citação não aparece
 
   // Contato
   contatoTexto: "Estou aberto a [[estágios e vagas em desenvolvimento]]. Manda uma mensagem aqui embaixo ou me encontra em qualquer um destes:",
   email: "seuemail@exemplo.com", // TODO
   links: [
-    { rotulo: "GITHUB",    url: "https://github.com/",    icone: "↗" },
+    { rotulo: "GITHUB",    url: "https://github.com/Lazulikk", icone: "↗" },
     { rotulo: "LINKEDIN",  url: "https://linkedin.com/",  icone: "↗" },
     { rotulo: "INSTAGRAM", url: "https://instagram.com/", icone: "↗" },
     { rotulo: "CV",        url: "#",                      icone: "↓" }
